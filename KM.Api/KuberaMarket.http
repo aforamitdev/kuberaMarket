@@ -1,0 +1,6 @@
+@KuberaMarket_HostAddress = http://localhost:5155
+
+GET {{KuberaMarket_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
