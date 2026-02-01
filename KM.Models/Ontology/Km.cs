@@ -7,6 +7,7 @@ public static class Km
     public static class  Classes
     {
         public const string StockExchange = Ns + "StockExchange";
+        public const string Stock = Ns + "Company";
 
     }
 
