@@ -30,19 +30,7 @@ public class GraphDbContext : IGraphDbContext
     {
         try
         {
-            var insert = """
-                         PREFIX km: <http://kuber.finance/ontology/>
-
-                         INSERT DATA {
-                           GRAPH <http://kuber.finance/exchange> {
-                             <http://kuber.finance/resource/TEST>
-                               a km:StockExchange ;
-                               km:code "TEST" .
-                           }
-                         }
-                         """;
-            _update.Update(insert);
-       
+        
             _update.Update(sparql);
             return Task.CompletedTask;
         }
@@ -50,7 +38,6 @@ public class GraphDbContext : IGraphDbContext
         {
             using var stream = ex.Response.GetResponseStream();
             using var reader = new StreamReader(stream);
-            Console.WriteLine("❌ GraphDB error:");
             Console.WriteLine(reader.ReadToEnd());
             
             Console.WriteLine(ex);
@@ -62,10 +49,10 @@ public class GraphDbContext : IGraphDbContext
     {
         try
         {
-            var res = _query.QueryWithResultSet("SELECT * WHERE { ?s ?p ?o } LIMIT 1");
-            Console.WriteLine(res.Count);
-            
+            Console.WriteLine(sparql);
+       
             var result = _query.QueryWithResultSet(sparql);
+            
             return Task.FromResult(result);
         }
         catch (Exception ex)

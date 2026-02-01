@@ -18,4 +18,11 @@ public class ExchangeService:IExchangeService
         Exchange newExchange=new Exchange(exchange.Code,exchange.Title,exchange.Currency,exchange.Country,exchange.EstablishedYear,"weee.sb.com");
         return  _exchangeRepo.Create(newExchange);
     }
+
+    public Task<IEnumerable<Exchange>> GetExchange()
+    {
+        return _exchangeRepo.GetAll();
+    }
+
+
 }

@@ -1,5 +1,6 @@
 using KM.Models.Graphs;
 using KM.Models.Ontology;
+using VDS.RDF.Query.Builder;
 
 namespace KM.Infrastructure.GraphDB.Sparql;
 
@@ -33,4 +34,27 @@ public static class ExchangeQueries
         Console.Write(data);
         return data;
     }
+
+    public static string GetAll()
+    {
+            
+        // var quert=QueryBuilder.Select()
+        
+        return $@"
+                 PREFIX km:<{Km.Ns}>
+                 PREFIX dc: <http://purl.org/dc/elements/1.1/>
+                 SELECT ?exchange ?code ?title ?country ?currency ?establishedYear ?website
+                 WHERE {{
+                    GRAPH <{Graphs.Exchange}> {{
+                        ?exchange a km:StockExchange; 
+                        km:country ?country ;
+                        km:code ?code ;
+                        km:currency ?currency ;
+                        km:establishedYear ?establishedYear ;
+                        }}
+                    }}
+                ORDER BY ?code
+                ";
+    }
+
 }
