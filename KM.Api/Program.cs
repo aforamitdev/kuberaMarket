@@ -1,25 +1,37 @@
 
+using KM.Application.Repository;
+using KM.Application.Services;
+using KM.Infrastructure.GraphDB;
 using KM.Models.Options;
-using KM.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
-builder.Services.AddOpenApi();
 builder.Services.AddControllers();
 
+builder.Services.AddOpenApi();
+
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen();
+
 IConfiguration config = builder.Configuration;
+
 builder.Services.Configure<GraphDbOptions>(config.GetSection("GraphDB"));
+
 builder.Services.AddHttpClient<IGraphDbContext, GraphDbContext>();
 
-var app = builder.Build();
-app.MapControllers();
-if (app.Environment.IsDevelopment())
-{
-    app.MapOpenApi();
-}
+builder.Services.AddScoped<IExchangeRepository, ExchangeRepository>();
+builder.Services.AddScoped<IExchangeService, ExchangeService>();
 
+var app = builder.Build();
+
+    app.MapOpenApi();
+    app.UseSwagger();
+    app.UseSwaggerUI();
+
+
+app.MapControllers();
 app.UseHttpsRedirection();
 
 

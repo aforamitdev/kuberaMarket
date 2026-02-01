@@ -13,11 +13,13 @@
         <PackageReference Include="Microsoft.Extensions.Configuration.EnvironmentVariables" Version="10.0.2" />
         <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="10.0.2" />
         <PackageReference Include="Microsoft.Extensions.Http" Version="10.0.2" />
+        <PackageReference Include="Swashbuckle.AspNetCore.SwaggerGen" Version="10.1.0" />
+        <PackageReference Include="Swashbuckle.AspNetCore.SwaggerUI" Version="10.1.0" />
     </ItemGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\KM.Application\KM.Application.csproj" />
       <ProjectReference Include="..\KM.Models\KM.Models.csproj" />
-      <ProjectReference Include="..\KM.Repositories\KM.Repositories.csproj" />
     </ItemGroup>
 
 </Project>
