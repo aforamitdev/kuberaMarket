@@ -1,0 +1,27 @@
+@base <http://kuber.finance/ontology/company>.
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix km: <http://kuber.finance/ontology/>.
+@prefix owl: <http://www.w3.org/2002/07/owl#>.
+
+km:Company a owl:Class,
+             owl:DatatypeProperty;
+           rdfs:domain km:Company;
+           rdfs:range xsd:decimal,
+                      xsd:string.
+km:Exchange a owl:Class.
+
+km:title a owl:DatatypeProperty;
+         rdfs:domain km:Exchange;
+         rdfs:range xsd:string.
+km:totalValue a owl:DatatypeProperty;
+              rdfs:domain km:Exchange;
+              rdfs:range xsd:decimal.
+km:website a owl:DatatypeProperty;
+           rdfs:domain km:Exchange;
+           rdfs:range xsd:anyURI.
+rdf:property a owl:ObjectProperty;
+             rdfs:domain km:Company;
+             rdfs:range km:Exchange.
