@@ -37,13 +37,18 @@ public static class ExchangeQueries
 
     public static string GetAll()
     {
+
+        var query = QueryBuilder
+            .Select("exchange", "code", "country", "currency", "establishedYear", "website");
             
-        // var quert=QueryBuilder.Select()
-        
+            
+
+                
+       
         return $@"
                  PREFIX km:<{Km.Ns}>
                  PREFIX dc: <http://purl.org/dc/elements/1.1/>
-                 SELECT ?exchange ?code ?title ?country ?currency ?establishedYear ?website
+                 SELECT ?exchange ?code  ?country ?currency ?establishedYear ?website
                  WHERE {{
                     GRAPH <{Graphs.Exchange}> {{
                         ?exchange a km:StockExchange; 

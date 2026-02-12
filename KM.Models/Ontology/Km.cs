@@ -3,7 +3,8 @@ namespace KM.Models.Ontology;
 public static class Km
 {
     public const string Ns = "http://kuber.finance/ontology/";
-    
+    public const string RdfType = "http://www.w3.org/1999/02/22-rdf-syntax-ns#type";
+
     public static class  Classes
     {
         public const string StockExchange = Ns + "StockExchange";
